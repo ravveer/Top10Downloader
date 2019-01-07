@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+
 import java.util.List;
 
 /**
@@ -48,10 +49,20 @@ public class FeedAdapter extends ArrayAdapter {
 //        TextView tvSummary = (TextView) convertView.findViewById(R.id.tvSummary);
 
         FeedEntry currentApp = applications.get(position);
+        String name = currentApp.getName();
+        if (!name.isEmpty()) {
+            name.trim();
+        }
 
-        viewHolder.tvName.setText(currentApp.getName());
-        viewHolder.tvArtist.setText(currentApp.getArtist());
-        viewHolder.tvSummary.setText(currentApp.getSummary());
+        String artist = currentApp.getArtist();
+        if (!artist.isEmpty()) {
+            artist.trim();
+        }
+        artist = "By " + artist;
+        String summary = currentApp.getSummary();
+        viewHolder.tvName.setText(name);
+        viewHolder.tvArtist.setText(artist);
+        viewHolder.tvSummary.setText(summary);
 
         return convertView;
     }
